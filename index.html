@@ -11,7 +11,7 @@
         const urlParams = new URLSearchParams(urlHash);
         const accessToken = urlParams.get("access_token");
         
-        let deepLink = "rfilm://login";
+        let deepLink = "rfilm://localhost/login";
 
         if (accessToken) {
           deepLink += `?access_token=${encodeURIComponent(accessToken)}`;
@@ -34,7 +34,7 @@
       const urlParams = new URLSearchParams(urlHash);
       const accessToken = urlParams.get("access_token");
 
-      let deepLink = "rfilm://login";
+      let deepLink = "rfilm://localhost/login";
 
       if (accessToken) {
         deepLink += `?access_token=${encodeURIComponent(accessToken)}`;
