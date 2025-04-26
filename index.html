@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redirect to RFilm</title>
+    <script>
+      window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get("code");
+        let deepLink = "rfilm://login";
+
+        if (code) {
+          deepLink += `/${encodeURIComponent(code)}`;
+        } else { 
+          deepLink += "/null"
+        }
+        console.log("Redirecting to:", deepLink);
+        window.location.href = deepLink;
+      };
+    </script>
+  </head>
+  <body>
+    <p>Nếu bạn không được chuyển hướng, hãy nhấn 
+      <a id="manualLink" href="#">tại đây</a>.
+    </p>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const code = urlParams.get("code");
+      let deepLink = "rfilm://login";
+
+      if (code) {
+        deepLink += `/${encodeURIComponent(code)}`;
+      } else { 
+          deepLink += "/null"
+      }
+
+      document.getElementById("manualLink").href = deepLink;
+      console.log("Manual link:", deepLink);
+    </script>
+  </body>
+</html>
