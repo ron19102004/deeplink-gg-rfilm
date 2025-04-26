@@ -4,15 +4,21 @@
     <title>Redirect to RFilm</title>
     <script>
       window.onload = function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get("code");
+        // Trích xuất phần hash của URL (sau dấu #)
+        const urlHash = window.location.hash.substring(1); // Lấy phần sau dấu #
+        
+        // Tách các tham số từ hash
+        const urlParams = new URLSearchParams(urlHash);
+        const accessToken = urlParams.get("access_token");
+        
         let deepLink = "rfilm://login";
 
-        if (code) {
-          deepLink += `/${encodeURIComponent(code)}`;
+        if (accessToken) {
+          deepLink += `?access_token=${encodeURIComponent(accessToken)}`;
         } else { 
-          deepLink += "/null"
+          deepLink += "?access_token=";
         }
+
         console.log("Redirecting to:", deepLink);
         window.location.href = deepLink;
       };
@@ -23,14 +29,17 @@
       <a id="manualLink" href="#">tại đây</a>.
     </p>
     <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const code = urlParams.get("code");
+      // Tương tự như trên, tạo một link thủ công
+      const urlHash = window.location.hash.substring(1); // Lấy phần sau dấu #
+      const urlParams = new URLSearchParams(urlHash);
+      const accessToken = urlParams.get("access_token");
+
       let deepLink = "rfilm://login";
 
-      if (code) {
-        deepLink += `/${encodeURIComponent(code)}`;
+      if (accessToken) {
+        deepLink += `?access_token=${encodeURIComponent(accessToken)}`;
       } else { 
-          deepLink += "/null"
+        deepLink += "?access_token=";
       }
 
       document.getElementById("manualLink").href = deepLink;
